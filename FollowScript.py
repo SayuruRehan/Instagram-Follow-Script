@@ -7,14 +7,21 @@ from selenium.webdriver.support import expected_conditions as EC
 import time 
 
 
-
+#css selectors for instagram login page
 username_css = '@name=\'username\''
 passowrd_css = 'name="password"'
+
+#instagram account username and password
 username = 'username'
 password = 'password'
+
+#Xpath selctor for posts
 xpath_posts = "//div//article//a"
+
+#count of number of accounts followed
 count = 0
 
+#function to login to IG
 def login(driver):
     WebDriverWait(driver, 20).until(
         EC.presence_of_element_located((By.NAME, "username")))
@@ -22,15 +29,19 @@ def login(driver):
     driver.find_element_by_name("password").send_keys(password) 
     driver.find_element_by_name("password").send_keys(u'\ue007')
 
+#function to lclick btn with css selector
 def click_button_with_css(driver, css_selector):
     element = WebDriverWait(driver, 20).until(
     EC.element_to_be_clickable((By.CSS_SELECTOR, css_selector)))
     element.click()
+    
+#function to click btn with xpath selector
 def click_button_with_xpath(driver, xpath):
     element = WebDriverWait(driver, 20).until(
     EC.element_to_be_clickable((By.XPATH, xpath)))
     element.click()
 
+#func to navigate to followers page
 def naviagate_to_followers(driver):
     dropdown_css = '[alt*="' + username + '"]'
     profile_css = "[href*=\"" + username + "\"]"
